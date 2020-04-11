@@ -1,0 +1,25 @@
+
+.content{
+    grid-area: content;
+    background-color: bisque;
+}
+.content image {
+    width: 800px;
+    height: 200px;
+}
+
+.content_img {
+    width: 800px;
+    height: 300px;
+}
+
+.item img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+
+.item {
+ color: crimson;
+}
