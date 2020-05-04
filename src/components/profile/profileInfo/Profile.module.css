@@ -1,0 +1,59 @@
+ul{
+    list-style: none;
+}
+
+.flex-wrap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-block {
+    min-height: 400px;
+}
+
+.profile-picture-block{
+    width: 20%;
+}
+
+.profile-picture-image{
+    width: 150px;
+    height: 150px;
+}
+
+.profile-info-block {
+    width: 78%;
+
+}
+.profile-info-status{
+    font-size: 12px;
+    color: grey;
+}
+
+.profile-info-name{
+    font-size: 17px;
+    color: crimson;
+
+}
+
+.profile-contacts-ul {
+    text-decoration: none;
+    list-style-image: none;
+}
+
+.content{
+    grid-area: content;
+    background-color: bisque;
+}
+.content image {
+    width: 800px;
+    height: 200px;
+}
+
+.content_img {
+    width: 800px;
+    height: 300px;
+}
+
+.item {
+    color: crimson;
+}

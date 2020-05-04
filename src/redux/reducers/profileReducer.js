@@ -1,4 +1,4 @@
-import {consts} from "../../consts";
+import {CONSTS} from "../../consts";
 
 let initialState = {
 	posts: [
@@ -11,11 +11,12 @@ let initialState = {
 
 	],
 	newPostValue: "",
+	profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case consts.ADD_POST:
+		case CONSTS.ADD_POST:
 			return {
 				...state,
 				posts: [...state.posts, {
@@ -25,11 +26,17 @@ const profileReducer = (state = initialState, action) => {
 				}],
 
 			};
-		case consts.SET_VALUE:
+		case CONSTS.SET_VALUE:
 			return {
 				...state,
 				newPostValue: action.value
 			};
+		case CONSTS.PROFILE.SET_PROFILE_INFO:
+			return {
+				...state,
+				profile: action.profile
+			};
+
 		default:
 			return state;
 	}

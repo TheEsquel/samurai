@@ -17,14 +17,13 @@ const Navbar = () => {
                 <NavLink to="/news" activeClassName={styles.activeLink} >New</NavLink>
             </div>
             <div className={styles.item}>
-                <NavLink to="/music" activeClassName={styles.activeLink}  >Music</NavLink>
+                <NavLink to="/users" activeClassName={styles.activeLink}  >Users</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink to="/settings" activeClassName={styles.activeLink}  >Settings</NavLink>
             </div>
         </nav>
     )
-
 };
 
 export default Navbar

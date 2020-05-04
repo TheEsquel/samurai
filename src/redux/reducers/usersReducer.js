@@ -1,28 +1,42 @@
-import followActionCreator from './../actions/usersActions'
-import unfollowActionCreator from './../actions/usersActions'
-import USERS_CONST from './../actions/usersActions'
+import {CONSTS} from './../../consts'
 
 let initialState = {
-	users: [
-		{id:1, followed: true, name: 'Rem', status: "the sun will rise and we will try again", location: {country: "UK", city: "London" }},
-		{id:2, followed: true, name: 'Arthur', status: "better your means better universe", location: {country: "Russia", city: "Moscow" }},
-		{id:3, followed: false, name: 'Oleg', status: "not certain yet", location: {country: "Germany", city: "Berlin" }},
-	]
+	users: [],
+	totalCount: 0,
+	currentPage: 1,
+	pageSize: 5,
+	isLoading: false,
 };
 
 const usersReducer = (state = initialState, action) => {
-	// debugger;
 	switch (action.type) {
-		case USERS_CONST.FOLLOW:
+		case CONSTS.USERS.FOLLOW:
 			return {
 				...state,
-				users: state.users.map(u => {
-					if(action.userId === u.id){
-						return {...u, followed: true}
-					}
-				})
+				users: state.users.map(u => action.id === u.id ? {...u, followed: true} : u)
 			};
-		case USERS_CONST.UNFOLLOW:
+		case CONSTS.USERS.UNFOLLOW:
+			return {
+				...state,
+				users: state.users.map(u => action.id === u.id ? {...u, followed: false} : u)
+			};
+		case CONSTS.USERS.SET_USERS:
+			return {
+				...state,
+				users: action.users,
+			};
+		case CONSTS.USERS.SET_PAGE:
+			return {
+				...state,
+				currentPage: action.page,
+				users: state.users,
+			};
+		case CONSTS.USERS.SET_TOTAL:
+			console.log(action);
+			return {
+				...state,
+				totalCount: action.totalCount
+			}
 		default:
 			return state
 	}

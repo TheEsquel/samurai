@@ -1,23 +1,28 @@
-import React from 'react';
-import styles from './ProfileInfo.module.css';
+import React from 'react'
+import Profile from "./Profile";
+import axios from "axios";
+import {connect} from "react-redux";
+import {setProfileInfo} from "../../../redux/actions/profileActions";
+import {withRouter} from "react-router-dom";
 
-const ProfileInfo = () => {
-    return (
-        <div className={styles.content}>
-            <div>
-                <img className={styles.content_img}
-                     src="https://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg" alt=""/>
-            </div>
-            <div className={styles.description}>
-                Profile description
-                {/*<img*/}
-                {/*src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0_2nqm0H20gpO-Pf9BsBwuAYt3McWcb-6rFs37i244h71Lyrnkg&s"*/}
-                {/*alt=""/>*/}
-                {/*<img src="https://img.pngio.com/male-profile-picture-icon-png-profile-png-512_512.png" alt="1"/>*/}
-            </div>
-        </div>
-    )
 
-};
+class ProfileInfo extends React.Component {
+	componentDidMount() {
+		const userId = this.props.match.params.userId || 7782;
+		console.log(userId);
+		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+			.then(response => {
+				this.props.setProfileInfo(response.data)
+			});
+	}
 
-export default ProfileInfo
+	render() {
+		return <Profile {...this.props}/>
+	}
+}
+
+const mapStateToProps = (state) =>({
+	profile: state.profilePage.profile
+})
+let withRouteProfileInfo = withRouter(ProfileInfo)
+export default connect(mapStateToProps, {setProfileInfo})(withRouteProfileInfo)

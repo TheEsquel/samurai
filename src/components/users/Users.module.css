@@ -1,0 +1,14 @@
+.flex-wrap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userPic {
+    width: 100px;
+    height: 100px;
+}
+
+.selectedPage {
+    font-weight: bold;
+    color: darkblue;
+}

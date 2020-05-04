@@ -1,8 +1,8 @@
-export const USERS_CONST = {
-	FOLLOW: 'FOLLOW',
-	UNFOLLOW: 'UNFOLLOW'
-}
+import {CONSTS} from "../../consts";
 
-
-export const followActionCreator = (userId) => ({type: USERS_CONST.FOLLOW, userId});
-export const unfollowActionCreator = (userId) => ({type: USERS_CONST.UNFOLLOW, userId})
+export const follow = (id) => ({type: CONSTS.USERS.FOLLOW, id});
+export const unfollow = (id) => ({type: CONSTS.USERS.UNFOLLOW, id});
+export const setUsers = (users) => ({type: CONSTS.USERS.SET_USERS, users});
+export const setPage = (page) => ({type:CONSTS.USERS.SET_PAGE, page});
+export const setTotal = totalCount => ({type: CONSTS.USERS.SET_TOTAL, totalCount});
+export const setLoading = (loading) => ({type: CONSTS.USERS.SET_LOADING, loading})

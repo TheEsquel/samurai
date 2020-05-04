@@ -1,4 +1,4 @@
-import {consts} from "../../consts";
+import {CONSTS} from "../../consts";
 
 let initialState = {
 	dialogs: {
@@ -19,14 +19,13 @@ let initialState = {
 };
 
 const dialogReducer = (state = initialState, action) => {
-	// debugger;
 	switch (action.type) {
-		case consts.SET_NEW_MESSAGE_VALUE:
+		case CONSTS.DIALOG.SET_NEW_MESSAGE_VALUE:
 			return {
 				...state,
 				newMessageValue: action.value
 			};
-		case consts.SEND_NEW_MESSAGE:
+		case CONSTS.DIALOG.SEND_NEW_MESSAGE:
 			const body =  state.newMessageValue;
 			return {
 				...state,
