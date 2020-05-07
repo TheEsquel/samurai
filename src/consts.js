@@ -1,5 +1,8 @@
 export const CONSTS =
 	{
+		COMMON: {
+			SET_LOADING: 'SET_LOADING',
+		},
 		PROFILE: {
 			SET_PROFILE_INFO: 'SET_PROFILE_INFO',
 		},
@@ -18,7 +21,6 @@ export const CONSTS =
 			SET_USERS: 'SET_USERS',
 			SET_PAGE: 'SET_PAGE',
 			SET_TOTAL: 'SET_TOTAL',
-			SET_LOADING: 'SET_LOADING',
 		},
 		AUTHORIZATION: {
 			SET_LOGIN_DATA: 'SET_LOGIN_DATA'

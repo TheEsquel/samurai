@@ -20,6 +20,11 @@ const usersReducer = (state = initialState, action) => {
 				...state,
 				users: state.users.map(u => action.id === u.id ? {...u, followed: false} : u)
 			};
+		case CONSTS.COMMON.SET_LOADING:
+			return {
+				...state,
+				isLoading: action.loading,
+			}
 		case CONSTS.USERS.SET_USERS:
 			return {
 				...state,
@@ -41,4 +46,5 @@ const usersReducer = (state = initialState, action) => {
 			return state
 	}
 };
+
 export default usersReducer;
