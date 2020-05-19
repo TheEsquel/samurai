@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './Dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import MessageItem from "./messageItem/MessageItem";
+import {compose} from "redux";
+import {Field, reduxForm} from "redux-form";
 
 let newMessageElement = React.createRef();
 
@@ -21,33 +23,41 @@ const Dialogs = (props) => {
 			text={message.text}
 		/>);
 
-	let onUpdateNewMessageValue = () => {
-		let value = newMessageElement.current.value;
-		props.updateNewMessageValue(value)
-	};
-
-	let onAddMessage = () => {
-		props.addMessage()
-	};
-
+	const onSubmit = form => {
+		console.log(form);
+	}
 
 	return (
 		<div className={styles.dialogs}>
 			<div className={styles.dialog_items}>
 				{usersElements}
 			</div>
-
-			<div className={styles.messages}>
-				<div>{messageElements}</div>
-				<div>
-					<textarea value={props.state.newMessageValue} ref={newMessageElement} onChange={onUpdateNewMessageValue}/>
-				</div>
-				<div><button onClick={onAddMessage}>Add message</button></div>
-			</div>
-
+			<div>{messageElements}</div>
+			<AddMessageForm onSubmit={onSubmit} />
 		</div>
 	)
 
 }
+
+let AddMessageForm = props => {
+
+	return(
+		<form name={'addMessage'} className={styles.messages} onSubmit={props.handleSubmit}>
+			<div>
+				<Field  component={'input'} type={'textarea'} name={'message'}/>
+			</div>
+			<div>
+				<button >Add message</button>
+			</div>
+		</form>
+	)
+}
+
+AddMessageForm = compose(
+	reduxForm({
+		form: 'addMessage'
+	})
+)(AddMessageForm)
+
 
 export default Dialogs

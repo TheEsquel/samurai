@@ -13,6 +13,7 @@ let initialState = {
 	newPostValue: "",
 	profile: null,
 	isLoading: false,
+	status: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -41,6 +42,11 @@ const profileReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: action.loading
+			};
+		case CONSTS.PROFILE.GET_PROFILE_STATUS:
+			return {
+				...state,
+				status: action.status
 			}
 		default:
 			return state;

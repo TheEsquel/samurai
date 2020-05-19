@@ -7,6 +7,8 @@ let Contacts = (props) => {
 			<li>Facebook: {props.contacts.facebook}</li>
 			<li>VK: {props.contacts.vk}</li>
 			<li>Twitter: {props.contacts.twitter}</li>
+			<li>Website: {props.contacts.website}</li>
+			<li>Github: {props.contacts.github}</li>
 		</ul>
 	)
 

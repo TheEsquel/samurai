@@ -9,12 +9,18 @@ const initialState = {
 const authorizationReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case CONSTS.AUTHORIZATION.SET_LOGIN_DATA:
-			console.log(action)
-			return{
-				...state,
-				profile: action.data,
-				isAuthorized: true
-			};
+			if(action.data.resultCode === 0){
+				return{
+					...state,
+					profile: action.data,
+					isAuthorized: true
+				};
+			}else {
+				return {
+					...state
+				}
+			}
+
 		default:
 			return state
 	}

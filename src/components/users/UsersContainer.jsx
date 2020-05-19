@@ -7,6 +7,8 @@ import {
  import Users from "./Users";
 import Loader from "../common/Loader";
 import {getUsers, followUser, unfollowUser} from "../../redux/thunk/usersThunk";
+import {compose} from "redux";
+import withAuthRedirect from "../hoc/withAuthRedirect";
 
 const mapStateToProps = (state) => {
 	return {
@@ -45,5 +47,8 @@ class UsersContainer extends React.Component {
 			</>
 	}
 }
-UsersContainer = connect(mapStateToProps, {setPage, setTotal, setUsers, followUser,  unfollowUser, setLoading, getUsers})(UsersContainer);
-export default UsersContainer
+
+export default compose(
+	connect(mapStateToProps, {setPage, setTotal, setUsers, followUser,  unfollowUser, setLoading, getUsers}),
+	withAuthRedirect
+)(UsersContainer)

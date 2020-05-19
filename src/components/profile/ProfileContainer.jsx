@@ -6,11 +6,8 @@ class ProfileContainer extends React.Component {
 	render() {
 		return (
 			<div >
-				<ProfileInfo/>
-				<PostsContainer
-					state={this.props.state}
-					dispatch={this.props.dispatch}
-				/>
+				<ProfileInfo />
+				<PostsContainer />
 			</div>)
 	}
 }

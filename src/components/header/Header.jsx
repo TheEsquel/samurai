@@ -1,28 +1,28 @@
 import React from 'react';
 import styles from './Header.module.css';
 import {NavLink } from 'react-router-dom'
+import logo from '../../assets/img/nasa.png'
 
 
 const Header = (props) => {
-    console.log(props);
-    if(!props.profile)
-        return <></>
     return (
         <header className={styles.header}>
-            <img
-                src="https://st2.depositphotos.com/5142301/7567/v/950/depositphotos_75677235-stock-illustration-lion-head-logo.jpg"
-                alt=""/>
+                <img
+                    src={logo}
+                    alt="nasa logo"
+                    className={styles["header-logo"]}
+                />
             <div className={styles["login-block"]}>
                 {props.isAuthorized ?
                     <div className={styles.authorized}>
                         <span>
-                           {props.profile.login}
+                           {props.profile.data.login}
                         </span><br/>
                         <span>
-                            {props.profile.email}
+                            {props.profile.data.email}
                         </span><br/>
                         <span>
-                            {props.profile.id}
+                            {props.profile.data.id}
                         </span>
                     </div>
 

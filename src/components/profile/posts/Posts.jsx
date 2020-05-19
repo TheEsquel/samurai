@@ -1,38 +1,43 @@
 import React from 'react';
 import styles from './Posts.module.css';
 import Post from './post/Post'
+import {Field, reduxForm} from "redux-form";
+import {compose} from "redux";
 
 let newPostElement = React.createRef();
 
-const Posts = (props) => {
+let AddPostForm = props => {
+
+    return (
+        <form action="" onSubmit={props.handleSubmit}>
+            <Field component={'textarea'} name={'addPost'} />
+            <div>
+                <button>add post</button>
+            </div>
+        </form>
+    )
+}
+
+AddPostForm = compose(
+    reduxForm({
+        form: 'addPost'
+    })
+)(AddPostForm)
+
+
+let Posts = (props) => {
     let postElements = props.state.posts.map((el) => {
         return <Post name={el.name} text={el.text} id={el.id} />
     });
 
-    let onAddPost = () => {
-        props.addPost()
-    };
-
-    let onChangeText = () => {
-        let newValue = newPostElement.current.value;
-        props.updateNewPost(newValue)
+    const onSubmit = form => {
+        console.log(form);
     };
 
     return (
         <div className={styles.postsBlock}>
-            My posts
-            <div>
-                <div>
-                    <textarea ref={newPostElement}
-                              value={props.state.newPostValue}
-                              cols="40" rows="5"
-                              onChange={onChangeText}
-                    />
-                </div>
-                <div>
-                    <button onClick={ () => onAddPost(newPostElement) }>Add post</button>
-                </div>
-            </div>
+            <p>My posts</p>
+            <AddPostForm  onSubmit={onSubmit} />
             <div className={styles.posts}>
                 {postElements}
             </div>

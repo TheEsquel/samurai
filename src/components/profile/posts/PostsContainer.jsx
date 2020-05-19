@@ -1,6 +1,7 @@
 import {addPostActionCreator, setValueActionCreator} from "../../../redux/actions/profileActions";
 import Posts from "./Posts";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
 	return {
@@ -17,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
+const PostsContainer = compose(
+	connect(mapStateToProps, mapDispatchToProps)
+)(Posts);
+
 
 export default PostsContainer

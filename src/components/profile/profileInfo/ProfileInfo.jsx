@@ -3,15 +3,16 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {setProfileInfo} from "../../../redux/actions/profileActions";
 import {withRouter} from "react-router-dom";
-import {getProfile} from  '../../../redux/thunk/profileThunk'
+import {getProfile, getStatus, updateStatus} from '../../../redux/thunk/profileThunk'
 import Loader from "../../common/Loader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class ProfileInfo extends React.Component {
 	componentDidMount() {
 		const userId = this.props.match.params.userId || 7782;
 		this.props.getProfile(userId);
+		this.props.getStatus(userId);
 	}
 
 	render() {
@@ -25,9 +26,12 @@ class ProfileInfo extends React.Component {
 const mapStateToProps = (state) =>({
 	profile: state.profilePage.profile,
 	loading: state.profilePage.isLoading,
-	isAuthorized: state.authorization.isAuthorized
+	isAuthorized: state.authorization.isAuthorized,
+	status: state.profilePage.status,
 });
 
-let AuthWithComponent = withAuthRedirect(ProfileInfo)
-let withRouteProfileInfo = withRouter(AuthWithComponent)
-export default connect(mapStateToProps, {setProfileInfo, getProfile})(withRouteProfileInfo)
+export default compose(
+	connect(mapStateToProps, {setProfileInfo, getProfile, getStatus, updateStatus}),
+	// withAuthRedirect,
+	withRouter
+)(ProfileInfo);
