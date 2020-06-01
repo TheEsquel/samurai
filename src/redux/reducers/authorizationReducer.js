@@ -1,7 +1,6 @@
 import {CONSTS} from "../../consts";
 
 const initialState = {
-	login: null,
 	profile: null,
 	isAuthorized: false,
 };
@@ -9,16 +8,11 @@ const initialState = {
 const authorizationReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case CONSTS.AUTHORIZATION.SET_LOGIN_DATA:
-			if(action.data.resultCode === 0){
+			console.log(action.payload);
 				return{
 					...state,
-					profile: action.data,
-					isAuthorized: true
-				};
-			}else {
-				return {
-					...state
-				}
+					profile: action.payload,
+					isAuthorized: action.payload.isAuth
 			}
 
 		default:

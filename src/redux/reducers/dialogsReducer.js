@@ -9,10 +9,10 @@ let initialState = {
 			{id: 4, name: "Urman"},
 		],
 		messages: [
-			{id: 1, text: "Sup guys"},
-			{id: 2, text: "Sup guys"},
-			{id: 3, text: "Fuck"},
-			{id: 4, text: "Another message"},
+			{id: 1, text: "Sup guys1"},
+			{id: 2, text: "Sup guys2"},
+			{id: 3, text: "Sup guys3"},
+			{id: 4, text: "Sup guys4"},
 		],
 	},
 	newMessageValue: "",
@@ -20,19 +20,13 @@ let initialState = {
 
 const dialogReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case CONSTS.DIALOG.SET_NEW_MESSAGE_VALUE:
-			return {
-				...state,
-				newMessageValue: action.value
-			};
 		case CONSTS.DIALOG.SEND_NEW_MESSAGE:
-			const body =  state.newMessageValue;
+			console.log(action);
 			return {
 				...state,
 				dialogs: {
 					...state.dialogs,
-					newMessageValue: '',
-					messages: [...state.dialogs.messages, {id: 5, text: body}]}
+					messages: [...state.dialogs.messages, {id: 5, text: action.message}]}
 			};
 		default:
 			return state

@@ -18,20 +18,16 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case CONSTS.ADD_POST:
+		case CONSTS.POSTS.ADD_POST:
+			console.log(action);
 			return {
 				...state,
 				posts: [...state.posts, {
-					id: 7,
-					name: "name",
-					text: state.newPostValue
+					id: state.posts.length++,
+					name: "Esquel",
+					text: action.post,
 				}],
 
-			};
-		case CONSTS.SET_VALUE:
-			return {
-				...state,
-				newPostValue: action.value
 			};
 		case CONSTS.PROFILE.SET_PROFILE_INFO:
 			return {

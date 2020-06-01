@@ -3,35 +3,35 @@ import styles from './Posts.module.css';
 import Post from './post/Post'
 import {Field, reduxForm} from "redux-form";
 import {compose} from "redux";
+import {Textarea} from "../../common/formComponents/formControls";
+import {required} from "../../common/validators/validators";
 
-let newPostElement = React.createRef();
 
 let AddPostForm = props => {
-
     return (
         <form action="" onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'addPost'} />
+            <Field component={Textarea} name={'post'}  validate={[required]}/>
             <div>
-                <button>add post</button>
+                <button> Add post</button>
             </div>
         </form>
     )
-}
+};
 
 AddPostForm = compose(
     reduxForm({
         form: 'addPost'
     })
-)(AddPostForm)
+)(AddPostForm);
 
 
-let Posts = (props) => {
+let Posts = props => {
     let postElements = props.state.posts.map((el) => {
         return <Post name={el.name} text={el.text} id={el.id} />
     });
 
     const onSubmit = form => {
-        console.log(form);
+        props.addPost(form)
     };
 
     return (

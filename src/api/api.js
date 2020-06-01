@@ -28,12 +28,6 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-	getAuthData () {
-		return instance.get(`auth/me`)
-			.then(response => {
-				return response.data
-			});
-	},
 	getProfile(userId) {
 		return instance.get(`profile/${userId}`)
 			.then(response => {
@@ -53,4 +47,21 @@ export const profileAPI = {
 				return response
 			})
 	}
-}
+};
+
+export const authAPI = {
+	getAuthData () {
+		return instance.get(`auth/me`)
+			.then(response => {
+				console.log(response);
+				return response.data
+			});
+	},
+	login(email, password, rememberMe){
+		return instance.post(`auth/login`, {email, password, rememberMe})
+	},
+	logout(){
+		return instance.delete(`auth/login`)
+	}
+};
+

@@ -5,6 +5,7 @@ import logo from '../../assets/img/nasa.png'
 
 
 const Header = (props) => {
+    console.log(props);
     return (
         <header className={styles.header}>
                 <img
@@ -16,19 +17,25 @@ const Header = (props) => {
                 {props.isAuthorized ?
                     <div className={styles.authorized}>
                         <span>
-                           {props.profile.data.login}
+                           {props.profile.login}
                         </span><br/>
                         <span>
-                            {props.profile.data.email}
+                            {props.profile.email}
                         </span><br/>
                         <span>
-                            {props.profile.data.id}
+                            {props.profile.id}
                         </span>
+                        <span>
+                            <button onClick={props.logout}>
+                                Logout
+                            </button>
+                        </span>
+
                     </div>
 
                     :
                     <NavLink to="/login" >
-                        Login
+                        <button> Login</button>
                     </NavLink>
                 }
 

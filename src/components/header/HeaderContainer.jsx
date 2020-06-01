@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {getAuthData} from "../../redux/thunk/profileThunk";
+import {getAuthData, logout} from "../../redux/thunk/profileThunk";
+import {compose} from "redux";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
@@ -9,11 +10,12 @@ class HeaderContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         return(
             <Header
                 isAuthorized={this.props.isAuthorized}
                 profile={this.props.profile}
+                logout={this.props.logout}
             />
         )
     }
@@ -24,4 +26,6 @@ const mapStateToProps = state => ({
     isAuthorized: state.authorization.isAuthorized,
 });
 
-export default connect(mapStateToProps, {getAuthData})(HeaderContainer)
+export default compose(
+    connect(mapStateToProps, {getAuthData, logout}),
+)(HeaderContainer)

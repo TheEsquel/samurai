@@ -8,7 +8,6 @@ class Profile extends React.Component {
 	render(){
 		if(!this.props.profile)
 			return <></>
-	console.log(this.props);
 	const {photos, userId, aboutMe, fullName, lookingForAJobDescription, contacts} = this.props.profile;
 		return (
 			<div className={styles["flex-wrap"]}>

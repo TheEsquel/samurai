@@ -15,7 +15,7 @@ class ProfileStatus extends React.Component {
 	}
 
 	onHideEdit = (e) => {
-		console.log(e.currentTarget.value)
+		// console.log(e.currentTarget.value)
 		this.setState({
 			editMode: false
 		})
@@ -23,7 +23,7 @@ class ProfileStatus extends React.Component {
 	}
 
 	onStatusChange = (e) => {
-		console.log(e.currentTarget.value)
+		// console.log(e.currentTarget.value)
 		this.setState({
 			status: e.currentTarget.value
 		})
@@ -39,7 +39,6 @@ class ProfileStatus extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<>
 				<div>

@@ -12,7 +12,6 @@ class Navbar extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         if(this.props.profile){
             this.setState({
                 userId: this.props.profile.data.id

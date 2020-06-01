@@ -4,12 +4,10 @@ import DialogItem from "./dialogItem/DialogItem";
 import MessageItem from "./messageItem/MessageItem";
 import {compose} from "redux";
 import {Field, reduxForm} from "redux-form";
-
-let newMessageElement = React.createRef();
+import {Textarea } from "../common/formComponents/formControls";
+import {required} from "../common/validators/validators";
 
 const Dialogs = (props) => {
-
-	console.log(props);
 
 	let usersElements = props.state.dialogs.users.map(user =>
 		<DialogItem
@@ -25,6 +23,8 @@ const Dialogs = (props) => {
 
 	const onSubmit = form => {
 		console.log(form);
+		props.addMessage(form)
+
 	}
 
 	return (
@@ -44,7 +44,7 @@ let AddMessageForm = props => {
 	return(
 		<form name={'addMessage'} className={styles.messages} onSubmit={props.handleSubmit}>
 			<div>
-				<Field  component={'input'} type={'textarea'} name={'message'}/>
+				<Field  component={Textarea}  name={'message'} validate={[required]} />
 			</div>
 			<div>
 				<button >Add message</button>
