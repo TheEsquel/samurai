@@ -1,5 +1,8 @@
 export const CONSTS =
 	{
+		APP: {
+			INITIALIZED_SUCCESS: 'INITIALIZED_SUCCESS'
+		},
 		COMMON: {
 			SET_LOADING: 'SET_LOADING',
 		},

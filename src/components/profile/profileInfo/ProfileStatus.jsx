@@ -63,4 +63,14 @@ class ProfileStatus extends React.Component {
 
 }
 
-export  default ProfileStatus
+const ProfileStatusHook = props => {
+	return(
+		<div>
+			1234
+		</div>
+	)
+}
+
+
+
+export  default ProfileStatusHook

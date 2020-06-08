@@ -53,7 +53,6 @@ export const authAPI = {
 	getAuthData () {
 		return instance.get(`auth/me`)
 			.then(response => {
-				console.log(response);
 				return response.data
 			});
 	},

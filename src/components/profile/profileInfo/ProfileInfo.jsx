@@ -7,15 +7,20 @@ import {getProfile, getStatus, updateStatus} from '../../../redux/thunk/profileT
 import Loader from "../../common/Loader";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {getProfileSelector} from "../../../redux/selectors/profileSelector";
+
 
 class ProfileInfo extends React.Component {
 	componentDidMount() {
-		const userId = this.props.match.params.userId || 7782;
+		const userId = this.props.match.params.userId
+					|| this.props.authData.profile.userId;
+		console.log(this.props.authData.profile);
 		this.props.getProfile(userId);
 		this.props.getStatus(userId);
 	}
 
 	render() {
+		console.log(this.props);
 		return <>
 			{ this.props.loading ? <Loader/> : <Profile {...this.props}/>
 			}
@@ -24,14 +29,14 @@ class ProfileInfo extends React.Component {
 }
 
 const mapStateToProps = (state) =>({
-	profile: state.profilePage.profile,
+	profile: getProfileSelector(state),
 	loading: state.profilePage.isLoading,
-	isAuthorized: state.authorization.isAuthorized,
 	status: state.profilePage.status,
+	authData: state.authorization
 });
 
 export default compose(
 	connect(mapStateToProps, {setProfileInfo, getProfile, getStatus, updateStatus}),
-	// withAuthRedirect,
+	withAuthRedirect,
 	withRouter
 )(ProfileInfo);

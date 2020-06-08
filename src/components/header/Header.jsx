@@ -5,7 +5,6 @@ import logo from '../../assets/img/nasa.png'
 
 
 const Header = (props) => {
-    console.log(props);
     return (
         <header className={styles.header}>
                 <img

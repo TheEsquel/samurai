@@ -9,11 +9,13 @@ import Loader from "../common/Loader";
 import {getUsers, followUser, unfollowUser} from "../../redux/thunk/usersThunk";
 import {compose} from "redux";
 import withAuthRedirect from "../hoc/withAuthRedirect";
+import {reselectUsers, selectPageSize, selectUsers} from "../../redux/selectors/usersSelector";
 
 const mapStateToProps = (state) => {
+	console.log(state);
 	return {
-		users: state.usersPage.users,
-		pageSize: state.usersPage.pageSize,
+		users: reselectUsers(state),
+		pageSize: selectPageSize(state),
 		totalCount: state.usersPage.totalCount,
 		currentPage: state.usersPage.currentPage,
 		isLoading: state.usersPage.isLoading,

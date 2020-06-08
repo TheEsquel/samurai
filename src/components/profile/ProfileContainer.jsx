@@ -7,7 +7,7 @@ class ProfileContainer extends React.Component {
 		return (
 			<div >
 				<ProfileInfo />
-				<PostsContainer />
+				{/*<PostsContainer />*/}
 			</div>)
 	}
 }

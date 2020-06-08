@@ -5,10 +5,6 @@ import {getAuthData, logout} from "../../redux/thunk/profileThunk";
 import {compose} from "redux";
 
 class HeaderContainer extends React.Component {
-    componentDidMount() {
-        this.props.getAuthData()
-    }
-
     render() {
         // console.log(this.props);
         return(

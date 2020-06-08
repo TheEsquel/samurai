@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Profile.module.css';
 import Contacts from "./Contats";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusHook from "./ProfileStatus";
 
 class Profile extends React.Component {
 
@@ -17,7 +17,7 @@ class Profile extends React.Component {
 				</div>
 				<div className={styles["profile-info-block"]}>
 					<div>
-						<ProfileStatus status={this.props.status}  updateStatus={this.props.updateStatus}/>
+						<ProfileStatusHook status={this.props.status}  updateStatus={this.props.updateStatus}/>
 					</div>
 					<div className={styles["profile-info-status"]}>{aboutMe}</div>
 					<div className={styles["profile-info-name"]}>{fullName}</div>

@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 const withAuthRedirect = (Component) => {
 	class redirectComponent extends React.Component {
 		render() {
-			console.log(this.props);
 			if(!this.props.isAuthorized)
 				return <Redirect to='/login'/>
 			return <Component {...this.props}/>
