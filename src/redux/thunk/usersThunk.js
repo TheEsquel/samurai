@@ -1,28 +1,23 @@
 import {usersAPI} from "../../api/api";
 import {setLoading, setPage, setTotal, setUsers, follow, unfollow} from "../actions/usersActions"
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 	dispatch(setLoading(true));
-	if (pageSize && currentPage)
-		usersAPI.getUsers(currentPage, pageSize).then(response => {
-			dispatch(setUsers(response.items));
-			dispatch(setTotal(response.totalCount));
-			dispatch(setPage(currentPage))
-			dispatch(setLoading(false));
-		});
-
+	dispatch(setPage(currentPage));
+	let response = await usersAPI.getUsers(currentPage, pageSize)
+	dispatch(setUsers(response.items));
+	dispatch(setTotal(response.totalCount));
+	dispatch(setLoading(false));
 };
 
-export const followUser = (userId) => (dispatch) => {
-	usersAPI.followUser(userId).then(response => {
-		if(response.data.resultCode === 0)
-			dispatch(follow(userId))
-	});
+export const followUser = (userId) => async (dispatch) => {
+	let response = await usersAPI.followUser(userId);
+	if (response.data.resultCode === 0)
+		dispatch(follow(userId))
 };
 
-export const unfollowUser = (userId) => (dispatch) => {
-	usersAPI.unfollowUser(userId).then(response => {
-		if(response.data.resultCode === 0)
-			dispatch(unfollow(userId))
-	});
+export const unfollowUser = (userId) => async dispatch => {
+	let response = await usersAPI.unfollowUser(userId);
+	if (response.data.resultCode === 0)
+		dispatch(unfollow(userId))
 };

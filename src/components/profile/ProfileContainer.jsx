@@ -1,12 +1,12 @@
 import React from 'react';
 import PostsContainer from "./posts/PostsContainer";
-import ProfileInfo from "./profileInfo/ProfileInfo";
+import Profile from "./profileInfo/Profile";
 
 class ProfileContainer extends React.Component {
 	render() {
 		return (
 			<div >
-				<ProfileInfo />
+				<Profile />
 				{/*<PostsContainer />*/}
 			</div>)
 	}

@@ -6,13 +6,14 @@ import {InputField} from "./formComponents/formControls";
 import {required} from "./validators/validators";
 import {login} from "../../redux/thunk/profileThunk";
 import {Redirect} from "react-router-dom";
+import * as style from './Login.module.css'
 
-let LoginForm = props => {
+let LoginForm = ({handleSubmit, error}) => {
 	return(
-		<form action="" name='login' onSubmit={props.handleSubmit}>
-			<p>
+		<form action="" name='login' onSubmit={handleSubmit}>
+			<h4>
 				Login form
-			</p>
+			</h4>
 			<div>
 				login: <Field placeholder={'login'} component={InputField} name={'email'} validate={[required]}/>
 			</div>
@@ -22,6 +23,7 @@ let LoginForm = props => {
 			<div>
 				remember: <Field component={'input'} name={'rememberMe'}  type={'checkbox'} />
 			</div>
+			{error && <span className={style["error-message"]}>{error[0]}</span>}
 			<div>
 				<button>Login</button>
 			</div>
@@ -33,15 +35,13 @@ LoginForm = reduxForm({
 	form: 'login',
 })(LoginForm);
 
-const  Login = props  => {
-	console.log(props);
+const  Login = ({login, isAuth}) => {
 	const onSubmit = form => {
-		console.log(form);
-		props.login(form.email, form.password, form.rememberMe )
+		login(form.email, form.password, form.rememberMe )
 	};
 
 	return <>
-			{props.isAuth && <Redirect to={'/profile'}/>}
+			{isAuth && <Redirect to={'/profile'}/>}
 			<div>
 				<LoginForm onSubmit={onSubmit}/>
 			</div>

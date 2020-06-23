@@ -1,42 +1,34 @@
-import React from 'react'
-import Profile from "./Profile";
-import {connect} from "react-redux";
-import {setProfileInfo} from "../../../redux/actions/profileActions";
-import {withRouter} from "react-router-dom";
-import {getProfile, getStatus, updateStatus} from '../../../redux/thunk/profileThunk'
-import Loader from "../../common/Loader";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
-import {compose} from "redux";
-import {getProfileSelector} from "../../../redux/selectors/profileSelector";
-
+import React from 'react';
+import styles from './Profile.module.css';
+import Contacts from "./Contats";
+import ProfileStatusHook from "./ProfileStatus";
 
 class ProfileInfo extends React.Component {
-	componentDidMount() {
-		const userId = this.props.match.params.userId
-					|| this.props.authData.profile.userId;
-		console.log(this.props.authData.profile);
-		this.props.getProfile(userId);
-		this.props.getStatus(userId);
+
+	render(){
+		if(!this.props.profile)
+			return <></>
+	const {photos, userId, aboutMe, fullName, lookingForAJobDescription, contacts} = this.props.profile;
+		return (
+			<div className={styles["flex-wrap"]}>
+				<div className={styles["profile-picture profile-block"]}>
+					<img src={photos.small} alt="" className={styles["profile-picture-image"]}/>
+					<div>ID: {userId}</div>
+				</div>
+				<div className={styles["profile-info-block"]}>
+					<div>
+						<ProfileStatusHook status={this.props.status}  updateStatus={this.props.updateStatus}/>
+					</div>
+					<div className={styles["profile-info-status"]}>{aboutMe}</div>
+					<div className={styles["profile-info-name"]}>{fullName}</div>
+					<div>Looking: {lookingForAJobDescription}</div>
+					<Contacts contacts={contacts}/>
+				</div>
+			</div>
+		)
 	}
 
-	render() {
-		console.log(this.props);
-		return <>
-			{ this.props.loading ? <Loader/> : <Profile {...this.props}/>
-			}
-		</>
-	}
+
 }
 
-const mapStateToProps = (state) =>({
-	profile: getProfileSelector(state),
-	loading: state.profilePage.isLoading,
-	status: state.profilePage.status,
-	authData: state.authorization
-});
-
-export default compose(
-	connect(mapStateToProps, {setProfileInfo, getProfile, getStatus, updateStatus}),
-	withAuthRedirect,
-	withRouter
-)(ProfileInfo);
+export default ProfileInfo

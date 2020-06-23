@@ -9,7 +9,7 @@ import Loader from "../common/Loader";
 import {getUsers, followUser, unfollowUser} from "../../redux/thunk/usersThunk";
 import {compose} from "redux";
 import withAuthRedirect from "../hoc/withAuthRedirect";
-import {reselectUsers, selectPageSize, selectUsers} from "../../redux/selectors/usersSelector";
+import {reselectUsers, selectPageSize} from "../../redux/selectors/usersSelector";
 
 const mapStateToProps = (state) => {
 	console.log(state);
@@ -28,7 +28,7 @@ class UsersContainer extends React.Component {
 		const {pageSize, currentPage} = this.props;
 		this.props.getUsers(currentPage, pageSize)
 	}
-	onPageChanged = (page) => {
+	onPageChange = (page) => {
 		this.props.getUsers(page, this.props.pageSize)
 	}
 	render() {
@@ -40,9 +40,9 @@ class UsersContainer extends React.Component {
 						pageSize={this.props.pageSize}
 						totalCount={this.props.totalCount}
 						currentPage={this.props.currentPage}
-						unfollowUser={this.props.unfollowUser}
-						followUser={this.props.followUser}
-						onPageChanged={this.onPageChanged}
+						unfollow={this.props.unfollowUser}
+						follow={this.props.followUser}
+						onPageChange={this.onPageChange}
 					/>
 				}
 

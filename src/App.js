@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Navbar from './components/navbar/Navbar'
 import ProfileContainer from './components/profile/ProfileContainer'
-import {BrowserRouter as Router, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
@@ -11,21 +11,16 @@ import Login from "./components/common/Login";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {initialize} from './redux/thunk/appThunk'
-import {getAuthData} from "./redux/thunk/profileThunk";
 import Loader from "./components/common/Loader";
 
 class App extends Component {
-
 	componentDidMount() {
 		this.props.initialize()
 	}
-
 	render() {
-		console.log(this.props);
 		if(!this.props.initialized)
 			return <Loader />
 		return (
-			<Router>
 				<div className="wrapper">
 					<HeaderContainer/>
 					<Navbar/>
@@ -45,7 +40,6 @@ class App extends Component {
 						/>
 					</div>
 				</div>
-			</Router>
 		);
 	}
 }
